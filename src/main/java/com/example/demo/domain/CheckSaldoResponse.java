@@ -6,7 +6,7 @@ import lombok.experimental.SuperBuilder;
 import java.math.BigDecimal;
 
 @Data
-@AllArgsConstructor
+@NoArgsConstructor
 @SuperBuilder
 public class CheckSaldoResponse {
 
