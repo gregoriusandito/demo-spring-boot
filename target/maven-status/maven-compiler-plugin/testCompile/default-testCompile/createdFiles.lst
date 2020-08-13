@@ -1,1 +1,2 @@
-com\example\demo\DemoApplicationTest.class
+com\example\demo\service\AccountServiceTest.class
+com\example\demo\controller\DemoApplicationControllerTest.class
