@@ -23,14 +23,14 @@ public class TransferService {
             toAccountDetail = accountService.getSaldo(transferRequest.getToAccountNumber());
         } catch (TransferException ex) {
             if (fromAccountDetail == null) {
-                throw new TransferException("SRCNOTFOUND", "Source Account not Found", "ref");
+                throw new TransferException("SRCNOTFOUND", "Source Account not Found", "SAF".concat(generateRandomRef().toString()));
             } else {
-                throw new TransferException("DSTNOTFOUND", "Beneficiary Account not Found", "ref");
+                throw new TransferException("DSTNOTFOUND", "Beneficiary Account not Found", "BAF".concat(generateRandomRef().toString()));
             }
         }
 
         if (transferRequest.getAmount().compareTo(fromAccountDetail.getBalance()) == -1 ) {
-            throw new TransferException("INSUFBAL", "Insufficient Balance", "ref");
+            throw new TransferException("INSUFBAL", "Insufficient Balance", "IBA".concat(generateRandomRef().toString()));
         } else {
             updateDestinationBalance.setAccountNumber(toAccountDetail.getAccountNumber());
             updateDestinationBalance.setBalance(toAccountDetail.getBalance().add(transferRequest.getAmount()));
@@ -40,6 +40,13 @@ public class TransferService {
         }
 
         return updateDestinationBalance;
+    }
+
+    private Integer generateRandomRef() {
+        int min = 1000;
+        int max = 10000;
+        int randomInt;
+        return randomInt = (int)(Math.random() * (max - min + 1) + min);
     }
 
 }
