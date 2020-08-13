@@ -1,11 +1,10 @@
 package com.example.demo.controller;
 
-import com.example.demo.domain.CheckSaldoResponse;
+import com.example.demo.domain.SaldoResponse;
 import com.example.demo.service.AccountService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.BDDMockito;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -14,8 +13,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.math.BigDecimal;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(controllers = DemoApplicationController.class)
@@ -37,8 +34,8 @@ class DemoApplicationControllerTest {
                 .willReturn(getSampleSaldo());
     }
 
-    private CheckSaldoResponse getSampleSaldo(){
-        return CheckSaldoResponse.builder()
+    private SaldoResponse getSampleSaldo(){
+        return SaldoResponse.builder()
                 .balance(BigDecimal.valueOf(10000L))
                 .accountNumber(accountNumber1)
                 .customerNumber(customerNumber1)

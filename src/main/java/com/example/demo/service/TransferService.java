@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.domain.CheckSaldoResponse;
+import com.example.demo.domain.SaldoResponse;
 import com.example.demo.domain.TransferRequest;
 import com.example.demo.exceptions.TransferException;
 import lombok.extern.slf4j.Slf4j;
@@ -13,10 +13,10 @@ public class TransferService {
     @Autowired
     AccountService accountService;
 
-    public CheckSaldoResponse transfer(Long fromAccountNumber, TransferRequest transferRequest){
-        CheckSaldoResponse updateDestinationBalance = null;
-        CheckSaldoResponse fromAccountDetail = null;
-        CheckSaldoResponse toAccountDetail;
+    public SaldoResponse transfer(Long fromAccountNumber, TransferRequest transferRequest){
+        SaldoResponse updateDestinationBalance = null;
+        SaldoResponse fromAccountDetail = null;
+        SaldoResponse toAccountDetail;
 
         try {
             fromAccountDetail = accountService.getSaldo(fromAccountNumber);

@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 @Data
 @NoArgsConstructor
 @SuperBuilder
-public class CheckSaldoResponse {
+public class SaldoResponse {
 
     private long accountNumber;
 
