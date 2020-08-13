@@ -14,6 +14,7 @@ public class TransferService {
     AccountService accountService;
 
     public SaldoResponse transfer(Long fromAccountNumber, TransferRequest transferRequest){
+        SaldoResponse updateFromAccountBalance = null;
         SaldoResponse updateDestinationBalance = null;
         SaldoResponse fromAccountDetail = null;
         SaldoResponse toAccountDetail;
@@ -28,15 +29,27 @@ public class TransferService {
                 throw new TransferException("DSTNOTFOUND", "Beneficiary Account not Found", "BAF".concat(generateRandomRef().toString()));
             }
         }
+        log.info("fr {}", fromAccountDetail);
+        log.info("to {}", toAccountDetail);
 
-        if (transferRequest.getAmount().compareTo(fromAccountDetail.getBalance()) == -1 ) {
+        if (fromAccountDetail.getBalance().compareTo(transferRequest.getAmount()) == -1 ) {
             throw new TransferException("INSUFBAL", "Insufficient Balance", "IBA".concat(generateRandomRef().toString()));
         } else {
-            updateDestinationBalance.setAccountNumber(toAccountDetail.getAccountNumber());
-            updateDestinationBalance.setBalance(toAccountDetail.getBalance().add(transferRequest.getAmount()));
-            updateDestinationBalance.setCustomerNumber(toAccountDetail.getCustomerNumber());
+            updateDestinationBalance = SaldoResponse.builder()
+                    .accountNumber(toAccountDetail.getAccountNumber())
+                    .balance(toAccountDetail.getBalance().add(transferRequest.getAmount()))
+                    .customerNumber(toAccountDetail.getCustomerNumber())
+                    .build();
+
+            updateFromAccountBalance = SaldoResponse.builder()
+                    .accountNumber(fromAccountDetail.getAccountNumber())
+                    .balance(fromAccountDetail.getBalance().subtract(transferRequest.getAmount()))
+                    .customerNumber(fromAccountDetail.getCustomerNumber())
+                    .build();
+
 
             accountService.updateSaldo(updateDestinationBalance);
+            accountService.updateSaldo(updateFromAccountBalance);
         }
 
         return updateDestinationBalance;
