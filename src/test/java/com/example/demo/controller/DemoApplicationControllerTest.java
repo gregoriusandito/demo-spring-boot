@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.domain.SaldoResponse;
 import com.example.demo.domain.TransferRequest;
 import com.example.demo.service.AccountService;
+import com.example.demo.service.CustomDetailsService;
 import com.example.demo.service.TransferService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
@@ -16,6 +17,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurer;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -46,6 +48,12 @@ public class DemoApplicationControllerTest {
     @MockBean
     private TransferService transferService;
 
+    @MockBean
+    private CustomDetailsService customDetailsService;
+
+    @MockBean
+    private AuthorizationServerConfigurer authorizationServerConfigurer;
+
     private final Long accountNumber1 = 123456L;
     private final Long wrongAccountNumber = 1234561L;
     private final Long customerNumber1 = 10001L;
@@ -73,21 +81,21 @@ public class DemoApplicationControllerTest {
 
     @Test
     public void checkSaldoResponse() throws Exception {
-        mockMvc.perform(get("/account/{accountNumber}", accountNumber1)
+        mockMvc.perform(get("/api/account/{accountNumber}", accountNumber1)
         ).andExpect(status().isOk());
 
     }
 
     @Test
     public void checkSaldoResponse_expect404NotFound() throws Exception {
-        mockMvc.perform(get("/acct/{accountNumber}", wrongAccountNumber))
+        mockMvc.perform(get("/api//acct/{accountNumber}", wrongAccountNumber))
                 .andExpect(status().isNotFound());
 
     }
 
     @Test
     public void transferSuccess() throws Exception {
-        mockMvc.perform(post("/account/{fromAccountNumber}/transfer", accountNumber1)
+        mockMvc.perform(post("/api/account/{fromAccountNumber}/transfer", accountNumber1)
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .accept(MediaType.APPLICATION_JSON_VALUE)
                 .content(objectMapper.writeValueAsString(getTransferRequest()))

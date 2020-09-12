@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
-@Controller
-@RequestMapping(path="/account")
+@RestController
+@RequestMapping(path="api/account")
 public class DemoApplicationController {
 
     @Autowired
