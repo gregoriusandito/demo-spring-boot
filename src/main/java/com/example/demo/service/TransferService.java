@@ -2,7 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.domain.SaldoResponse;
 import com.example.demo.domain.TransferRequest;
-import com.example.demo.exceptions.TransferException;
+import com.example.demo.exceptions.GeneralException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,29 +22,29 @@ public class TransferService {
         try {
             fromAccountDetail = accountService.getSaldo(fromAccountNumber);
             toAccountDetail = accountService.getSaldo(transferRequest.getToAccountNumber());
-        } catch (TransferException ex) {
+        } catch (GeneralException ex) {
             if (fromAccountDetail == null) {
-                throw new TransferException("SRCNOTFOUND", "Source Account not Found", "SAF".concat(generateRandomRef().toString()));
+                throw new GeneralException("SRCNOTFOUND", "Source Account not Found", "SAF".concat(generateRandomRef().toString()));
             } else {
-                throw new TransferException("DSTNOTFOUND", "Beneficiary Account not Found", "BAF".concat(generateRandomRef().toString()));
+                throw new GeneralException("DSTNOTFOUND", "Beneficiary Account not Found", "BAF".concat(generateRandomRef().toString()));
             }
         }
         log.info("fr {}", fromAccountDetail);
         log.info("to {}", toAccountDetail);
 
         if (fromAccountDetail.getBalance().compareTo(transferRequest.getAmount()) == -1 ) {
-            throw new TransferException("INSUFBAL", "Insufficient Balance", "IBA".concat(generateRandomRef().toString()));
+            throw new GeneralException("INSUFBAL", "Insufficient Balance", "IBA".concat(generateRandomRef().toString()));
         } else {
             updateDestinationBalance = SaldoResponse.builder()
                     .accountNumber(toAccountDetail.getAccountNumber())
                     .balance(toAccountDetail.getBalance().add(transferRequest.getAmount()))
-                    .customerNumber(toAccountDetail.getCustomerNumber())
+                    .customerName(toAccountDetail.getCustomerName())
                     .build();
 
             updateFromAccountBalance = SaldoResponse.builder()
                     .accountNumber(fromAccountDetail.getAccountNumber())
                     .balance(fromAccountDetail.getBalance().subtract(transferRequest.getAmount()))
-                    .customerNumber(fromAccountDetail.getCustomerNumber())
+                    .customerName(fromAccountDetail.getCustomerName())
                     .build();
 
 

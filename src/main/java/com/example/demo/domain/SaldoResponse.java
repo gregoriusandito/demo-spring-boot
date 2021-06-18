@@ -9,11 +9,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @SuperBuilder
 public class SaldoResponse {
-
     private long accountNumber;
-
-    private long customerNumber;
-
+    private String customerName;
     private BigDecimal balance;
-
 }

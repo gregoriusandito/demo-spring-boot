@@ -39,19 +39,19 @@ public class DemoApplicationControllerTest {
 
     private final Long accountNumber1 = 123456L;
     private final Long wrongAccountNumber = 1234561L;
-    private final Long customerNumber1 = 10001L;
+    private final String customerName = "Linus Torvald";
 
     @Before
     public void setUp() {
         BDDMockito.given(accountService.getSaldo(accountNumber1))
-                .willReturn(getSampleSaldo(accountNumber1, customerNumber1));
+                .willReturn(getSampleSaldo(accountNumber1, customerName));
     }
 
-    private SaldoResponse getSampleSaldo(Long accountNumber, Long customerNumber){
+    private SaldoResponse getSampleSaldo(Long accountNumber, String customerName){
         return SaldoResponse.builder()
                 .balance(BigDecimal.valueOf(10000L))
                 .accountNumber(accountNumber)
-                .customerNumber(customerNumber)
+                .customerName(customerName)
                 .build();
     }
 
@@ -82,7 +82,7 @@ public class DemoApplicationControllerTest {
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .accept(MediaType.APPLICATION_JSON_VALUE)
                 .content(objectMapper.writeValueAsString(getTransferRequest()))
-        ).andExpect(status().isOk());
+        ).andExpect(status().isCreated());
 
     }
 

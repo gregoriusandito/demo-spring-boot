@@ -1,5 +1,4 @@
 com\example\demo\DemoApplication.class
-com\example\demo\domain\entity\Customer$1.class
 com\example\demo\domain\TransferRequest$TransferRequestBuilderImpl.class
 com\example\demo\service\TransferService.class
 com\example\demo\configuration\SpringConfiguration.class
@@ -7,15 +6,15 @@ com\example\demo\domain\TransferRequest.class
 com\example\demo\service\AccountService.class
 com\example\demo\domain\SaldoResponse$SaldoResponseBuilder.class
 com\example\demo\domain\TransferRequest$1.class
+com\example\demo\exceptions\GeneralExceptionSchema.class
 com\example\demo\controller\DemoApplicationController.class
 com\example\demo\domain\entity\Account.class
-com\example\demo\exceptions\TransferException.class
 com\example\demo\repository\AccountRepository.class
 com\example\demo\repository\CustomerRepository.class
 com\example\demo\domain\entity\Customer.class
-com\example\demo\domain\entity\Customer$CustomerBuilder.class
+com\example\demo\exceptions\GeneralException.class
 com\example\demo\domain\SaldoResponse$SaldoResponseBuilderImpl.class
 com\example\demo\domain\SaldoResponse.class
 com\example\demo\domain\SaldoResponse$1.class
 com\example\demo\domain\TransferRequest$TransferRequestBuilder.class
-com\example\demo\domain\entity\Customer$CustomerBuilderImpl.class
+com\example\demo\exceptions\ExceptionInterceptor.class
