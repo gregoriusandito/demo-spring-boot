@@ -1,7 +1,7 @@
 com\example\demo\DemoApplication.class
 com\example\demo\domain\TransferRequest$TransferRequestBuilderImpl.class
 com\example\demo\service\TransferService.class
-com\example\demo\configuration\SpringConfiguration.class
+com\example\demo\configuration\ExceptionInterceptor.class
 com\example\demo\domain\TransferRequest.class
 com\example\demo\service\AccountService.class
 com\example\demo\domain\SaldoResponse$SaldoResponseBuilder.class
@@ -17,4 +17,3 @@ com\example\demo\domain\SaldoResponse$SaldoResponseBuilderImpl.class
 com\example\demo\domain\SaldoResponse.class
 com\example\demo\domain\SaldoResponse$1.class
 com\example\demo\domain\TransferRequest$TransferRequestBuilder.class
-com\example\demo\exceptions\ExceptionInterceptor.class

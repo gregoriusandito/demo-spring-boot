@@ -1,5 +1,7 @@
-package com.example.demo.exceptions;
+package com.example.demo.configuration;
 
+import com.example.demo.exceptions.GeneralException;
+import com.example.demo.exceptions.GeneralExceptionSchema;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

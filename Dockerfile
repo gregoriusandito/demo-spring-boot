@@ -1,18 +1,20 @@
 FROM openjdk:8-jdk-alpine
 
-RUN apk add --no-cache git
+RUN apk add --no-cache git maven tini
 
-RUN git status
+RUN export PATH=${PATH}:${JAVA_HOME}/bin
 
 RUN mkdir -p /services/demo-linkaja
 
-COPY src /services/demo-linkaja/src
+WORKDIR /services/demo-linkaja/
 
-COPY pom.xml /services/demo-linkaja/pom.xml
+RUN git clone https://github.com/gregoriusandito/demo-spring-boot.git
 
-WORKDIR /services/demo-linkaja
+WORKDIR /services/demo-linkaja/demo-spring-boot
 
 RUN mvn compile
+
+RUN mvn package -B
 
 ENV TZ Asia/Jakarta
 
