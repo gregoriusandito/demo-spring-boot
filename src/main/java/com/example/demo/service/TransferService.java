@@ -48,8 +48,8 @@ public class TransferService {
                     .build();
 
 
-            accountService.updateSaldo(updateDestinationBalance);
-            accountService.updateSaldo(updateFromAccountBalance);
+            accountService.updateSaldo(updateDestinationBalance, toAccountDetail.getCustomerNumber());
+            accountService.updateSaldo(updateFromAccountBalance, fromAccountDetail.getCustomerNumber());
         }
 
         return updateDestinationBalance;

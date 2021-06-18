@@ -1,5 +1,6 @@
 package com.example.demo.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -9,7 +10,9 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @SuperBuilder
 public class SaldoResponse {
-    private long accountNumber;
+    private Long accountNumber;
     private String customerName;
     private BigDecimal balance;
+    @JsonIgnore
+    private Long customerNumber;
 }

@@ -26,11 +26,14 @@ public class AccountService {
 
         try {
             Account finalAccount = accountRepository.findById(accountNumber).get();
+            accountRepository.findAll();
             Customer finalCustomer = customerRepository.findById(finalAccount.getCustomerNumber()).get();
+            log.info("getall: {}", customerRepository.findAll());
             return response.builder()
                     .accountNumber(finalAccount.getAccountNumber())
                     .customerName(finalCustomer.getCustomerName())
                     .balance(finalAccount.getBalance())
+                    .customerNumber(finalAccount.getCustomerNumber())
                     .build();
         } catch (NoSuchElementException ex) {
             throw new GeneralException("NOACCFOUND", "No Account Found", "NAF".concat(generateRandomRef().toString()));
@@ -38,10 +41,11 @@ public class AccountService {
 
     }
 
-    public void updateSaldo(SaldoResponse updatedSaldo){
+    public void updateSaldo(SaldoResponse updatedSaldo, Long customerNumber){
         Account updatedAccount = new Account();
         updatedAccount.setBalance(updatedSaldo.getBalance());
         updatedAccount.setAccountNumber(updatedSaldo.getAccountNumber());
+        updatedAccount.setCustomerNumber(customerNumber);
         accountRepository.save(updatedAccount);
     }
 

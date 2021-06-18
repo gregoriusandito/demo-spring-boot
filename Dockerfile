@@ -12,12 +12,10 @@ RUN git clone https://github.com/gregoriusandito/demo-spring-boot.git
 
 WORKDIR /services/demo-linkaja/demo-spring-boot
 
-RUN mvn compile
-
-RUN mvn package -B
+RUN mvn package
 
 ENV TZ Asia/Jakarta
 
 EXPOSE 8080
 
-ENTRYPOINT ["/sbin/tini", "--", "sh", "-c", "java -jar target/demo-linkaja-0.0.1.jar --server.port=8080 --app.rest-read-timeout=50000"]
+ENTRYPOINT ["/sbin/tini", "--", "sh", "-c", "java -jar target/demo-linkaja-0.0.1-SNAPSHOT.jar --server.port=8080 --app.rest-read-timeout=50000"]
