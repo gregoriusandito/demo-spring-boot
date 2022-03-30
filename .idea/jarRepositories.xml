@@ -7,6 +7,11 @@
       <option name="url" value="https://repo.maven.apache.org/maven2" />
     </remote-repository>
     <remote-repository>
+      <option name="id" value="nexus-id" />
+      <option name="name" value="Nexus HCID" />
+      <option name="url" value="https://nexus.homecredit.id/maven" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="redhat-ga" />
       <option name="name" value="Red Hat GA Repository" />
       <option name="url" value="https://maven.repository.redhat.com/ga/" />
@@ -25,6 +30,11 @@
       <option name="id" value="redhat-early-access" />
       <option name="name" value="Red Hat Early Access Repository" />
       <option name="url" value="https://maven.repository.redhat.com/earlyaccess/all/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="central" />
+      <option name="name" value="Central Repository" />
+      <option name="url" value="https://nexus.homecredit.id/maven" />
     </remote-repository>
   </component>
 </project>

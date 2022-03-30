@@ -1,3 +1,3 @@
-com\example\demo\controller\DemoApplicationControllerTest.class
-com\example\demo\service\TransferServiceTest.class
-com\example\demo\service\AccountServiceTest.class
+com/example/demo/service/TransferServiceTest.class
+com/example/demo/controller/DemoApplicationControllerTest.class
+com/example/demo/service/AccountServiceTest.class
