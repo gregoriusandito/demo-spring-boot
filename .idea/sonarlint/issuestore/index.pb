@@ -7,9 +7,6 @@ o
 Lsrc/test/java/com/example/demo/controller/DemoApplicationControllerTest.java,6\d\6d484a2639fa7d0f99bd8ef8867130e3d86875d8
 o
 ?src/test/java/com/example/demo/service/TransferServiceTest.java,3\5\35ab4ad0b376ebfec521ad8b11a6551e68285a6c
-:
-
-.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
 v
 Fsrc/main/java/com/example/demo/configuration/ExceptionInterceptor.java,f\0\f020008a963529f8d3d984b5ff01d60f1219602f
 c
